@@ -15,9 +15,9 @@ export default class Map extends React.Component {
     super(props);
 
     this.state = {
-      lat: 14.639452415446272,
-      lng: 121.10270229817115,
-      zoom: 12.7,
+      lat: 34.0522,
+      lng: -118.2437,
+      zoom: 9,
     };
   }
 
@@ -31,10 +31,10 @@ export default class Map extends React.Component {
 
     this.map = new mapboxgl.Map({
       container: this.mapContainer,
-      style: 'mapbox://styles/brianehenyo/cjxkcz3mw46z81crr7sbh3bpz',
+      style: 'mapbox://styles/mapbox/streets-v11', // style URL
       center: [lng, lat],
       zoom,
-      minZoom: 12,
+      minZoom: 7,
       maxZoom: 15,
       pitch: 60,
       bearing: 0.13,
@@ -87,6 +87,66 @@ export default class Map extends React.Component {
         type: 'geojson',
         data: 'data/areas_of_interest.geojson',
       });
+
+
+      /* LA County Additions */
+
+      this.map.addSource('subdivisions', {
+        type: 'geojson',
+        data: '/data/zipCity.geojson'
+      });
+
+      this.map.addLayer({
+        id: 'sub-fills',
+        type: 'fill',
+        source: 'subdivisions',
+        layout: {},
+        paint: {
+          'fill-color': '#627BC1',
+          'fill-opacity': [
+          'case',
+          ['boolean', ['feature-state', 'hover'], false],
+            1,
+            0.5
+          ]
+        }
+      });
+ 
+      this.map.addLayer({
+        id: 'sub-borders',
+        type: 'line',
+        source: 'subdivisions',
+        layout: {},
+        paint: {
+          'line-color': '#627BC1',
+          'line-width': 2
+        }
+      });
+
+
+      this.map.addLayer({
+        id: 'sub-borders-extrude',
+        type: 'fill-extrusion',
+        source: 'subdivisions',
+        paint: {
+          'fill-extrusion-color': {
+              property: 'SALARY',
+              stops: [
+                  [0, '#000000'],
+                  [25000, '#660000'],
+                  [50000, '#112200'],
+                  [75000, '#052200'],
+                  [200000, '#006600']
+              ],
+            },
+            'fill-extrusion-height': ['*', .01, ['get', 'SALARY']],
+            // Make extrusions slightly opaque to see through indoor walls.
+            'fill-extrusion-opacity': 0.8
+          },
+      });
+
+      /*End of LA County Additions*/
+
 
       this.map.addLayer({
         id: 'boundary',

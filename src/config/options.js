@@ -1,7 +1,7 @@
-const center = [121.10270229817115, 14.639452415446272];
+const center = [-118.2437, 34.0522];
 const pitch = 60;
 const bearing = 0.13;
-const zoom = 12.5;
+const zoom = 9;
 
 const chapters = {
   marikina: {
@@ -68,7 +68,7 @@ const chapters = {
     position: {
       pitch,
       bearing,
-      zoom: 12.7,
+      zoom: 9,
       center,
       duration: 800,
     },

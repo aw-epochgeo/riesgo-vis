@@ -61,7 +61,7 @@ export default class Panel extends React.Component {
     return (
       <div id="features" onScroll={this.handleScroll}>
         <section id="marikina" className="active">
-          <Typography variant="h3">Marikina City</Typography>
+          <Typography variant="h3">Los Angeles County</Typography>
           <Typography>
             A highly urbanized city in the capital region of the Philippines, it lies in a valley surrounded by the mountains of Sierra Madre in the east and the hills of Quezon City in the west. Situated near the center of the Pasig-Marikina river basin, most of the city sits at an elevation of <span class="highlight">15 meters above sea level</span>.
           </Typography>
