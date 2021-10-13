@@ -1,22 +1,22 @@
 const center = [-118.2437, 34.0522];
 const pitch = 0;
 const bearing = 0.13;
-const zoom = 9;
+const zoom = 8;
 
 const chapters = {
   marikina: {
     paint: [
       {
-        id: 'sub-fill',
+        id: 'zip-fill',
         opacity: 0,
       },
       {
-        id: 'sub-borders',
-        opacity: 1,
+        id: 'zip-borders',
+        opacity: .8,
       },
       {
-        id: 'sub-borders-extrude',
-        opacity: 1,
+        id: 'zip-borders-extrude',
+        opacity: 0,
       },
     ],
     layout: [
@@ -30,15 +30,15 @@ const chapters = {
       },
       {
         id: 'museums-layer',
-        visibility: 'visible',
+        visibility: 'none',
       },
       {
         id: 'parks-layer',
-        visibility: 'visible',
+        visibility: 'none',
       },
       {
         id: 'arts-layer',
-        visibility: 'visible',
+        visibility: 'none',
       },
     ],
     position: {
@@ -49,19 +49,19 @@ const chapters = {
       duration: 800,
     },
   },
-  land: {
+  art_chapter: {
     paint: [
       {
-        id: 'sub-fill',
+        id: 'zip-fill',
         opacity: 0,
       },
       {
-        id: 'sub-borders',
-        opacity: 1,
+        id: 'zip-borders',
+        opacity: .6,
       },
       {
-        id: 'sub-borders-extrude',
-        opacity: 1,
+        id: 'zip-borders-extrude',
+        opacity: 0,
       },
     ],
     layout: [
@@ -79,7 +79,7 @@ const chapters = {
       },
       {
         id: 'parks-layer',
-        visibility: 'visible',
+        visibility: 'none',
       },
       {
         id: 'arts-layer',
@@ -89,24 +89,24 @@ const chapters = {
     position: {
       pitch: 0,
       bearing: 0,
-      zoom,
+      zoom: 9,
       center,
       duration: 800,
     },
   },
-  typhoon: {
+  park_chapter: {
     paint: [
       {
-        id: 'sub-fill',
+        id: 'zip-fill',
         opacity: 0,
       },
       {
-        id: 'sub-borders',
-        opacity: 1,
+        id: 'zip-borders',
+        opacity: .6,
       },
       {
-        id: 'sub-borders-extrude',
-        opacity: 1,
+        id: 'zip-borders-extrude',
+        opacity: 0,
       },
     ],
     layout: [
@@ -120,7 +120,7 @@ const chapters = {
       },
       {
         id: 'museums-layer',
-        visibility: 'visible',
+        visibility: 'none',
       },
       {
         id: 'parks-layer',
@@ -128,13 +128,13 @@ const chapters = {
       },
       {
         id: 'arts-layer',
-        visibility: 'visible',
+        visibility: 'none',
       },
     ],
     position: {
       pitch: 0,
       bearing: 0,
-      zoom,
+      zoom: 9,
       center,
       duration: 800,
     },
@@ -142,16 +142,16 @@ const chapters = {
   evacuation: {
     paint: [
       {
-        id: 'sub-fill',
+        id: 'zip-fill',
         opacity: 0,
       },
       {
-        id: 'sub-borders',
-        opacity: 1,
+        id: 'zip-borders',
+        opacity: .6,
       },
       {
-        id: 'sub-borders-extrude',
-        opacity: 1,
+        id: 'zip-borders-extrude',
+        opacity: .75,
       },
     ],
     layout: [
@@ -165,21 +165,21 @@ const chapters = {
       },
       {
         id: 'museums-layer',
-        visibility: 'visible',
+        visibility: 'none',
       },
       {
         id: 'parks-layer',
-        visibility: 'visible',
+        visibility: 'none',
       },
       {
         id: 'arts-layer',
-        visibility: 'visible',
+        visibility: 'none',
       },
     ],
     position: {
       pitch: 60,
       bearing: 0,
-      zoom,
+      zoom: 9,
       center,
       duration: 800,
     },
@@ -187,16 +187,16 @@ const chapters = {
   conclusion: {
     paint: [
       {
-        id: 'sub-fill',
+        id: 'zip-fill',
+        opacity: .5,
+      },
+      {
+        id: 'zip-borders',
+        opacity: .6,
+      },
+      {
+        id: 'zip-borders-extrude',
         opacity: 0,
-      },
-      {
-        id: 'sub-borders',
-        opacity: 1,
-      },
-      {
-        id: 'sub-borders-extrude',
-        opacity: 1,
       },
     ],
     layout: [
@@ -224,7 +224,7 @@ const chapters = {
     position: {
       pitch: 0,
       bearing: 0,
-      zoom,
+      zoom: 8,
       center,
       duration: 800,
     },
@@ -237,7 +237,7 @@ const legendLabels = {
 };
 
 const filters = {
-  land: [
+  art_chapter: [
     {
       hasAll: true,
       value: 'buildingType',
@@ -263,7 +263,7 @@ const filters = {
       ],
     },
   ],
-  typhoon: [
+  park_chapter: [
     {
       hasAll: false,
       value: 'floodYear',
@@ -361,7 +361,7 @@ const tooltipConfig = {
       },
     ],
   },
-  land: {
+  art_chapter: {
     layer: 'buildings',
     features: [
       {
@@ -370,7 +370,7 @@ const tooltipConfig = {
       },
     ],
   },
-  typhoon: {
+  park_chapter: {
     layer: 'buildings',
     features: [
       {
@@ -488,8 +488,8 @@ const legendOptions = {
 
 const chapterLayers = {
   marikina: ['landelevation3d'],
-  land: ['landelevation'],
-  typhoon: ['flood'],
+  art_chapter: ['landelevation'],
+  park_chapter: ['flood'],
   evacuation: ['flood', 'landelevation'],
   conclusion: ['suitability'],
 };

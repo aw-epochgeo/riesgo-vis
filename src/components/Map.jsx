@@ -17,7 +17,7 @@ export default class Map extends React.Component {
     this.state = {
       lat: 34.0522,
       lng: -118.2437,
-      zoom: 9,
+      zoom: 8,
     };
   }
 
@@ -36,7 +36,7 @@ export default class Map extends React.Component {
       zoom,
       minZoom: 7,
       maxZoom: 15,
-      pitch: 60,
+      pitch: 0,
       bearing: 0.13,
     });
 
@@ -172,7 +172,7 @@ export default class Map extends React.Component {
     });
 
       this.map.addLayer({
-        id: 'zip-fills',
+        id: 'zip-fill',
         type: 'fill',
         source: 'zipcodes',
         layout: {},
@@ -191,7 +191,7 @@ export default class Map extends React.Component {
           'case',
           ['boolean', ['feature-state', 'hover'], false],
             1,
-            .75
+            0
           ]
         }
       });
@@ -659,7 +659,7 @@ export default class Map extends React.Component {
         this.map.easeTo(position);
 
         // Try filter buildings based on chapterName
-        if (nextProps.chapterName === 'typhoon') {
+        if (nextProps.chapterName === 'park_chapter') {
           this.map.setFilter('buildings', ['<=', 'fhm005yrs', 2]);
         } else {
           this.map.setFilter('buildings', undefined);

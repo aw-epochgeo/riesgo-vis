@@ -29,7 +29,7 @@ export default class App extends React.Component {
   updateChapter = (chapterName) => {
     let { layer } = this.state;
 
-    if (chapterName === 'typhoon') {
+    if (chapterName === 'park_chapter') {
       layer = 'flood';
     }
 
