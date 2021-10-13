@@ -91,31 +91,115 @@ export default class Map extends React.Component {
 
       /* LA County Additions */
 
-      this.map.addSource('subdivisions', {
+      this.map.addSource('zipcodes', {
         type: 'geojson',
         data: '/data/zipCity.geojson'
       });
+      this.map.addSource('arts', {
+        type: 'geojson',
+        data: '/data/cultural_performing_arts_cln.geojson'
+      });
+      this.map.addSource('parks', {
+        type: 'geojson',
+        data: '/data/parks.geojson'
+      });
+      this.map.addSource('museums', {
+        type: 'geojson',
+        data: '/data/museums_aquariums_cln.geojson'
+      });
+
+
+    /*Load images to be used as icons*/
+    this.map.loadImage(
+      '/data/icons/museum.png',
+      (error, image) => {
+        if (error) throw error;
+        // Add the image to the map style.
+        this.map.addImage('museum', image);
+      }
+    );
+    this.map.loadImage(
+      '/data/icons/park.png',
+      (error, image) => {
+        if (error) throw error;
+        // Add the image to the map style.
+        this.map.addImage('park', image);
+      }
+    );
+    this.map.loadImage(
+      '/data/icons/art.png',
+      (error, image) => {
+        if (error) throw error;
+        // Add the image to the map style.
+        this.map.addImage('art', image);
+      }
+    );
+
+    // The feature-state dependent fill-opacity expression will render the hover effect
+    // when a feature's hover state is set to true.
+    this.map.addLayer({
+      id: 'museums-layer',
+      type: 'symbol',
+      source: 'museums',
+      layout: {
+        'icon-image': 'museum',
+        'icon-size': 0.035
+      }
+    });
+
+    // The feature-state dependent fill-opacity expression will render the hover effect
+    // when a feature's hover state is set to true.
+    this.map.addLayer({
+      id: 'parks-layer',
+      type: 'symbol',
+      source: 'parks',
+      layout: {
+        'icon-image': 'park',
+        'icon-size': 0.035
+      }
+    });
+
+    // The feature-state dependent fill-opacity expression will render the hover effect
+    // when a feature's hover state is set to true.
+    this.map.addLayer({
+      id: 'arts-layer',
+      type: 'symbol',
+      source: 'arts',
+      layout: {
+        'icon-image': 'art',
+        'icon-size': 0.035
+      }
+    });
 
       this.map.addLayer({
-        id: 'sub-fills',
+        id: 'zip-fills',
         type: 'fill',
-        source: 'subdivisions',
+        source: 'zipcodes',
         layout: {},
         paint: {
-          'fill-color': '#627BC1',
+          'fill-color': {
+              property: 'SALARY',
+              stops: [
+                  [0, '#000000'],
+                  [25000, '#660000'],
+                  [50000, '#112200'],
+                  [75000, '#052200'],
+                  [200000, '#006600']
+              ],
+            },
           'fill-opacity': [
           'case',
           ['boolean', ['feature-state', 'hover'], false],
             1,
-            0.5
+            .75
           ]
         }
       });
  
       this.map.addLayer({
-        id: 'sub-borders',
+        id: 'zip-borders',
         type: 'line',
-        source: 'subdivisions',
+        source: 'zipcodes',
         layout: {},
         paint: {
           'line-color': '#627BC1',
@@ -125,9 +209,9 @@ export default class Map extends React.Component {
 
 
       this.map.addLayer({
-        id: 'sub-borders-extrude',
+        id: 'zip-borders-extrude',
         type: 'fill-extrusion',
-        source: 'subdivisions',
+        source: 'zipcodes',
         paint: {
           'fill-extrusion-color': {
               property: 'SALARY',
@@ -139,9 +223,9 @@ export default class Map extends React.Component {
                   [200000, '#006600']
               ],
             },
-            'fill-extrusion-height': ['*', .01, ['get', 'SALARY']],
+            'fill-extrusion-height': ['*', .005, ['get', 'SALARY']],
             // Make extrusions slightly opaque to see through indoor walls.
-            'fill-extrusion-opacity': 0.8
+            'fill-extrusion-opacity': 0
           },
       });
 
