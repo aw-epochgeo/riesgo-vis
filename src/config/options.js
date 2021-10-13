@@ -50,6 +50,18 @@ const chapters = {
         id: 'aoe',
         opacity: 0,
       },
+      {
+        id: 'sub-fills',
+        opacity: 0,
+      },
+      {
+        id: 'sub-borders',
+        opacity: 1,
+      },
+      {
+        id: 'sub-borders-extrude',
+        opacity: 1,
+      },
     ],
     layout: [
       {
@@ -118,6 +130,18 @@ const chapters = {
       {
         id: 'aoe',
         opacity: 0,
+      },
+      {
+        id: 'sub-fill',
+        opacity: 0,
+      },
+      {
+        id: 'sub-borders',
+        opacity: 1,
+      },
+      {
+        id: 'sub-borders-extrude',
+        opacity: 1,
       },
     ],
     layout: [
