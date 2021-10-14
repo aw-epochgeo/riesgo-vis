@@ -96,7 +96,7 @@ export default class Map extends React.Component {
       });
       this.map.addSource('museums', {
         type: 'geojson',
-        data: '/data/art_museums.geojson'
+        data: '/data/art_museums_new.geojson'
       });
 
 
