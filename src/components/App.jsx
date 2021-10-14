@@ -19,6 +19,8 @@ export default class App extends React.Component {
 
     this.updateChapter = this.updateChapter.bind(this);
     this.updateAmenity = this.updateAmenity.bind(this);
+    this.updateMuseums = this.updateMuseums.bind(this);
+    this.updateParks = this.updateParks.bind(this);
     this.updateBuildingType = this.updateBuildingType.bind(this);
     this.updateLayer = this.updateLayer.bind(this);
     this.updateFloodYear = this.updateFloodYear.bind(this);
@@ -40,6 +42,19 @@ export default class App extends React.Component {
   }
 
   updateAmenity = (event) => {
+    this.setState({
+      amenity: event.target.value,
+    });
+  }
+
+  updateMuseums = (event) => {
+    this.setState({
+      amenity: event.target.value,
+    });
+  }
+
+  updateParks = (event) => {
+    console.log(event.target.value);
     this.setState({
       amenity: event.target.value,
     });
@@ -105,6 +120,8 @@ export default class App extends React.Component {
           minutes={minutes}
           suitabilityYear={suitabilityYear}
           updateAmenity={this.updateAmenity}
+          updateMuseums={this.updateMuseums}
+          updateParks={this.updateParks}
           updateBuildingType={this.updateBuildingType}
           updateLayer={this.updateLayer}
           updateFloodYear={this.updateFloodYear}

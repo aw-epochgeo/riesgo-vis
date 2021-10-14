@@ -221,9 +221,9 @@ const filters = {
   museum_chapter: [
     {
       hasAll: true,
-      value: 'attraction_type',
+      value: 'amenity',
       label: 'Type',
-      onChange: 'updateBuildingType',
+      onChange: 'updateMuseums',
       options: [
         {
           label: 'Museum',
@@ -250,6 +250,48 @@ const filters = {
           value: 'memorial',
         },
         {
+          label: 'Zoo',
+          value: 'zoo',
+        },
+        {
+          label: 'Aquarium',
+          value: 'aquarium',
+        },
+        {
+          label: 'Other',
+          value: 'other',
+        },
+      ],
+    },
+  ],
+  park_chapter: [
+    {
+      hasAll: true,
+      value: 'amenity',
+      label: 'Type',
+      onChange: 'updateParks',
+      options: [
+        {
+          label: 'Park',
+          value: 'park',
+        },
+        {
+          label: 'Beach',
+          value: 'beach',
+        },
+        {
+          label: 'Open Space',
+          value: 'open_space',
+        },
+        {
+          label: 'Bike Path',
+          value: 'bike_path',
+        },
+        {
+          label: 'Small Park',
+          value: 'small_park',
+        },
+        {
           label: 'Other',
           value: 'other',
         },
@@ -260,8 +302,8 @@ const filters = {
     {
       hasAll: false,
       value: 'iconFilter',
-      label: 'Suitability Return Period',
-      onChange: 'updateSuitabilityYear',
+      label: 'Type:',
+      onChange: 'updateAmenity',
       options: [
         {
           label: 'All',
@@ -295,31 +337,42 @@ const tooltipConfig = {
     ],
   },
   museum_chapter: {
-    layer: 'buildings',
+    layer: 'museums-layer',
     features: [
       {
-        label: 'Type',
-        value: 'category',
+        label: 'Name:',
+        value: 'Name',
       },
     ],
   },
   park_chapter: {
-    layer: 'buildings',
+    layer: 'parks-layer',
     features: [
       {
-        label: 'Building Type',
-        value: 'category',
+        label: 'Name:',
+        value: 'PARK_NAME',
+      },
+    ],
+  },
+  conclusion_chapter: {
+    layer: 'parks-layer',
+    features: [
+      {
+        label: 'Name:',
+        value: 'PARK_NAME',
+      },
+    ],
+  },
+  conclusion_chapter: {
+    layer: 'museums-layer',
+    features: [
+      {
+        label: 'Name:',
+        value: 'Name',
       },
     ],
   },
 };
-/*
-                  [0, '#000000'],
-                  [25000, '#660000'],
-                  [50000, '#112200'],
-                  [75000, '#052200'],
-                  [200000, '#006600']
-                  */
 
 // legend options
 const legendOptions = {
@@ -331,6 +384,13 @@ const legendOptions = {
     range: true,
   },
   landelevation: {
+    name: 'Median Salary',
+    colors: ['#AA0000', '#00AA00'],
+    min: 25000,
+    max: 200000,
+    range: true,
+  },
+  salary_legend: {
     name: 'Median Salary',
     colors: ['#AA0000', '#00AA00'],
     min: 25000,
@@ -371,11 +431,11 @@ const legendOptions = {
 //chapter layers
 
 const chapterLayers = {
-  intro_chapter: ['landelevation'],
-  museum_chapter: ['landelevation'],
-  park_chapter: ['landelevation'],
-  salary_chapter: ['landelevation'],
-  conclusion_chapter: ['landelevation'],
+  intro_chapter: ['salary_legend'],
+  museum_chapter: ['salary_legend'],
+  park_chapter: ['salary_legend'],
+  salary_chapter: ['salary_legend'],
+  conclusion_chapter: ['salary_legend'],
 };
 
 const floodStops = [

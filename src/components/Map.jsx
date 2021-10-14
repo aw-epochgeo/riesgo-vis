@@ -83,7 +83,6 @@ export default class Map extends React.Component {
         data: 'data/areas_of_interest.geojson',
       });
 
-
       /* LA County Additions */
 
       this.map.addSource('zipcodes', {
@@ -173,7 +172,7 @@ export default class Map extends React.Component {
         layout: {},
         paint: {
           'line-color': '#627BC1',
-          'line-width': 2
+          'line-width': 1
         }
       });
 
@@ -545,12 +544,14 @@ export default class Map extends React.Component {
         if (nextProps.amenity !== amenity) {
           if (nextProps.amenity !== 'all') {
             //this.map.setFilter('evacuation', ['==', 'amenity', nextProps.amenity]);
-            this.map.setFilter('capacity', ['==', 'amenity', nextProps.amenity]);
+            this.map.setFilter('museums-layer', ['==', 'amenity', nextProps.amenity]);
+            this.map.setFilter('parks-layer', ['==', 'amenity', nextProps.amenity]);
             this.map.setFilter('radius', ['==', 'amenity', nextProps.amenity]);
             this.map.setFilter('walking', ['all', ['==', 'amenity', nextProps.amenity], ['==', 'AA_MINS', minutes]]);
           } else {
             //this.map.setFilter('evacuation', undefined);
-            this.map.setFilter('capacity', undefined);
+            this.map.setFilter('museums-layer', undefined);
+            this.map.setFilter('parks-layer', undefined);
             this.map.setFilter('radius', undefined);
             this.map.setFilter('walking', ['==', 'AA_MINS', minutes]);
           }
