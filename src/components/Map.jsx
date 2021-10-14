@@ -48,11 +48,6 @@ export default class Map extends React.Component {
         url: 'mapbox://unissechua.8kcfu1fc',
       });
 
-      this.map.addSource('evacuation', {
-        type: 'vector',
-        url: 'mapbox://unissechua.4r8fc81u',
-      });
-
       this.map.addSource('landelevation', {
         type: 'vector',
         url: 'mapbox://unissechua.54ft2aw9',
@@ -95,17 +90,13 @@ export default class Map extends React.Component {
         type: 'geojson',
         data: '/data/zipCity.geojson'
       });
-      this.map.addSource('arts', {
-        type: 'geojson',
-        data: '/data/cultural_performing_arts_cln.geojson'
-      });
       this.map.addSource('parks', {
         type: 'geojson',
         data: '/data/parks.geojson'
       });
       this.map.addSource('museums', {
         type: 'geojson',
-        data: '/data/museums_aquariums_cln.geojson'
+        data: '/data/art_museums.geojson'
       });
 
 
@@ -119,19 +110,11 @@ export default class Map extends React.Component {
       }
     );
     this.map.loadImage(
-      '/data/icons/park.png',
+      '/data/icons/tree.png',
       (error, image) => {
         if (error) throw error;
         // Add the image to the map style.
         this.map.addImage('park', image);
-      }
-    );
-    this.map.loadImage(
-      '/data/icons/art.png',
-      (error, image) => {
-        if (error) throw error;
-        // Add the image to the map style.
-        this.map.addImage('art', image);
       }
     );
 
@@ -142,8 +125,9 @@ export default class Map extends React.Component {
       type: 'symbol',
       source: 'museums',
       layout: {
-        'icon-image': 'museum',
-        'icon-size': 0.035
+          visibility: 'none',
+          'icon-image': 'museum',
+          'icon-size': 0.035
       }
     });
 
@@ -154,19 +138,8 @@ export default class Map extends React.Component {
       type: 'symbol',
       source: 'parks',
       layout: {
+          visibility: 'none',
         'icon-image': 'park',
-        'icon-size': 0.035
-      }
-    });
-
-    // The feature-state dependent fill-opacity expression will render the hover effect
-    // when a feature's hover state is set to true.
-    this.map.addLayer({
-      id: 'arts-layer',
-      type: 'symbol',
-      source: 'arts',
-      layout: {
-        'icon-image': 'art',
         'icon-size': 0.035
       }
     });
@@ -180,18 +153,15 @@ export default class Map extends React.Component {
           'fill-color': {
               property: 'SALARY',
               stops: [
-                  [0, '#000000'],
-                  [25000, '#660000'],
-                  [50000, '#112200'],
-                  [75000, '#052200'],
-                  [200000, '#006600']
+                  [0, '#AA6666'],
+                  [200000, '#00AA00']
               ],
             },
           'fill-opacity': [
           'case',
           ['boolean', ['feature-state', 'hover'], false],
             1,
-            0
+            0.5
           ]
         }
       });
@@ -216,11 +186,8 @@ export default class Map extends React.Component {
           'fill-extrusion-color': {
               property: 'SALARY',
               stops: [
-                  [0, '#000000'],
-                  [25000, '#660000'],
-                  [50000, '#112200'],
-                  [75000, '#052200'],
-                  [200000, '#006600']
+                  [0, '#AA6666'],
+                  [200000, '#00AA00']
               ],
             },
             'fill-extrusion-height': ['*', .005, ['get', 'SALARY']],
@@ -364,6 +331,7 @@ export default class Map extends React.Component {
         },
       }, 'waterway');
 
+      /*
       this.map.addLayer({
         id: 'evacuation',
         type: 'symbol',
@@ -373,19 +341,9 @@ export default class Map extends React.Component {
           visibility: 'none',
           'icon-image': '{icon}-15',
           'icon-allow-overlap': true,
-          // 'text-field': '{amenity}',
-          // 'text-font': ['Open Sans Bold'],
-          // 'text-size': 10,
-          // 'text-transform': 'lowercase',
-          // 'text-letter-spacing': 0.05,
-          // 'text-offset': [0, 1.5],
         },
-        // paint: {
-        //   'text-color': '#202',
-        //   'text-halo-color': '#fff',
-        //   'text-halo-width': 2,
-        // },
       });
+      */
 
       this.map.addLayer({
         id: 'population',
@@ -405,45 +363,6 @@ export default class Map extends React.Component {
           },
           'fill-opacity': 0,
           'fill-opacity-transition': {
-            duration: 800,
-            delay: 0,
-          },
-        },
-      }, 'waterway');
-
-      this.map.addLayer({
-        id: 'capacity',
-        type: 'circle',
-        source: 'evacuation',
-        'source-layer': 'marikina_evac_centers',
-        paint: {
-          'circle-color': {
-            property: 'capacity',
-            stops: [
-              [120, '#feebe2'],
-              [150, '#fbb4b9'],
-              [820, '#f768a1'],
-              [1890, '#c51b8a'],
-              [2750, '#7a0177'],
-            ],
-          },
-          'circle-radius': {
-            property: 'capacity',
-            stops: [
-              [{ zoom: 12, value: 120 }, 10],
-              [{ zoom: 12, value: 150 }, 15],
-              [{ zoom: 12, value: 820 }, 20],
-              [{ zoom: 12, value: 1890 }, 25],
-              [{ zoom: 12, value: 2750 }, 30],
-              [{ zoom: 15, value: 120 }, 20],
-              [{ zoom: 15, value: 150 }, 40],
-              [{ zoom: 15, value: 820 }, 60],
-              [{ zoom: 15, value: 1890 }, 80],
-              [{ zoom: 15, value: 2750 }, 100],
-            ],
-          },
-          'circle-opacity': 0,
-          'circle-opacity-transition': {
             duration: 800,
             delay: 0,
           },
@@ -484,19 +403,6 @@ export default class Map extends React.Component {
         'source-layer': 'marikina_buildings_features',
         paint: {
           'fill-color': '#38316e',
-          // 'fill-color': [
-          //   'match',
-          //   ['get', 'building'],
-          //   'school', '#1b9e77',
-          //   'house', '#d95f02',
-          //   'residential', '#7570b3',
-          //   'commercial', '#e7298a',
-          //   'retail', '#66a61e',
-          //   'college', '#e6ab02',
-          //   'mall', '#a6761d',
-          //   'hospital', '#666666',
-          //   '#38316e',
-          // ],
           'fill-opacity': 0,
           'fill-opacity-transition': {
             duration: 800,
@@ -593,23 +499,6 @@ export default class Map extends React.Component {
 
     this.map.on('click', (e) => {
       const { chapterName } = this.props;
-
-      // Do only for accessibility story
-      if (chapterName === 'accessibility') {
-        const features = this.map.queryRenderedFeatures(e.point, { layers: ['evacuation'] });
-
-        if (features.length > 0) {
-          const selected = features[0].properties;
-
-          if (selected.osm_id !== undefined) {
-            this.map.getCanvas().style.cursor = features.length ? 'default' : '';
-
-            // Set filter for isochrones depending on the osm_id
-            this.map.setFilter('walking', ['==', 'osm_id', selected.osm_id]);
-            console.log(selected.osm_id);
-          }
-        }
-      }
     });
 
     this.map.on('mousemove', (e) => {
@@ -669,12 +558,12 @@ export default class Map extends React.Component {
       if (nextProps.amenity) {
         if (nextProps.amenity !== amenity) {
           if (nextProps.amenity !== 'all') {
-            this.map.setFilter('evacuation', ['==', 'amenity', nextProps.amenity]);
+            //this.map.setFilter('evacuation', ['==', 'amenity', nextProps.amenity]);
             this.map.setFilter('capacity', ['==', 'amenity', nextProps.amenity]);
             this.map.setFilter('radius', ['==', 'amenity', nextProps.amenity]);
             this.map.setFilter('walking', ['all', ['==', 'amenity', nextProps.amenity], ['==', 'AA_MINS', minutes]]);
           } else {
-            this.map.setFilter('evacuation', undefined);
+            //this.map.setFilter('evacuation', undefined);
             this.map.setFilter('capacity', undefined);
             this.map.setFilter('radius', undefined);
             this.map.setFilter('walking', ['==', 'AA_MINS', minutes]);

@@ -8,7 +8,7 @@ const chapters = {
     paint: [
       {
         id: 'zip-fill',
-        opacity: 0,
+        opacity: 0.5,
       },
       {
         id: 'zip-borders',
@@ -36,10 +36,6 @@ const chapters = {
         id: 'parks-layer',
         visibility: 'none',
       },
-      {
-        id: 'arts-layer',
-        visibility: 'none',
-      },
     ],
     position: {
       pitch: 0,
@@ -49,11 +45,11 @@ const chapters = {
       duration: 800,
     },
   },
-  art_chapter: {
+  museum_chapter: {
     paint: [
       {
         id: 'zip-fill',
-        opacity: 0,
+        opacity: 0.5,
       },
       {
         id: 'zip-borders',
@@ -80,10 +76,6 @@ const chapters = {
       {
         id: 'parks-layer',
         visibility: 'none',
-      },
-      {
-        id: 'arts-layer',
-        visibility: 'visible',
       },
     ],
     position: {
@@ -98,7 +90,7 @@ const chapters = {
     paint: [
       {
         id: 'zip-fill',
-        opacity: 0,
+        opacity: 0.5,
       },
       {
         id: 'zip-borders',
@@ -126,10 +118,6 @@ const chapters = {
         id: 'parks-layer',
         visibility: 'visible',
       },
-      {
-        id: 'arts-layer',
-        visibility: 'none',
-      },
     ],
     position: {
       pitch: 0,
@@ -139,7 +127,7 @@ const chapters = {
       duration: 800,
     },
   },
-  evacuation: {
+  salary_chapter: {
     paint: [
       {
         id: 'zip-fill',
@@ -169,10 +157,6 @@ const chapters = {
       },
       {
         id: 'parks-layer',
-        visibility: 'none',
-      },
-      {
-        id: 'arts-layer',
         visibility: 'none',
       },
     ],
@@ -216,10 +200,6 @@ const chapters = {
         id: 'parks-layer',
         visibility: 'visible',
       },
-      {
-        id: 'arts-layer',
-        visibility: 'visible',
-      },
     ],
     position: {
       pitch: 0,
@@ -232,93 +212,34 @@ const chapters = {
 };
 
 const legendLabels = {
+  empty: 'No Legend',
   flood: 'Flood Hazard Levels',
   landelevation3d: 'Land Elevation',
 };
 
 const filters = {
-  art_chapter: [
+  museum_chapter: [
     {
       hasAll: true,
       value: 'buildingType',
-      label: 'Building Type',
+      label: 'Type',
       onChange: 'updateBuildingType',
       options: [
         {
-          label: 'Residential',
-          value: 'residential',
+          label: 'Museum',
+          value: 'museum',
         },
         {
-          label: 'Private',
-          value: 'private',
+          label: 'Center',
+          value: 'center',
         },
         {
-          label: 'Health',
-          value: 'health',
+          label: 'Garden',
+          value: 'garden',
         },
         {
-          label: 'Education',
-          value: 'education',
-        },
-      ],
-    },
-  ],
-  park_chapter: [
-    {
-      hasAll: false,
-      value: 'floodYear',
-      label: 'Flood Hazard Return Period',
-      onChange: 'updateFloodYear',
-      options: [
-        {
-          label: '5-year',
-          value: 'fhm005yrs',
-        },
-        {
-          label: '25-year',
-          value: 'fhm025yrs',
-        },
-        {
-          label: '100-year',
-          value: 'fhm100yrs',
-        },
-      ],
-    },
-  ],
-  evacuation: [
-    {
-      hasAll: true,
-      value: 'amenity',
-      label: 'Evacuation Centers',
-      onChange: 'updateAmenity',
-      options: [
-        {
-          label: 'Community Centre',
-          value: 'community_centre',
-        },
-        {
-          label: 'Basketball Court',
-          value: 'basketball_court',
-        },
-        {
-          label: 'School',
-          value: 'school',
-        },
-      ],
-    },
-    {
-      hasAll: false,
-      value: 'layer',
-      label: 'Toggle Layer',
-      onChange: 'updateLayer',
-      options: [
-        {
-          label: 'Land Elevation',
-          value: 'landelevation',
-        },
-        {
-          label: 'Flood Hazard Map',
-          value: 'flood',
+          label: 'Pier',
+          value: 'pier',
         },
       ],
     },
@@ -326,21 +247,21 @@ const filters = {
   conclusion: [
     {
       hasAll: false,
-      value: 'suitabilityYear',
+      value: 'iconFilter',
       label: 'Suitability Return Period',
       onChange: 'updateSuitabilityYear',
       options: [
         {
-          label: '5-year',
-          value: 'mcda005yrs',
+          label: 'All',
+          value: 'all',
         },
         {
-          label: '25-year',
-          value: 'mcda025yrs',
+          label: 'Museums',
+          value: 'museum',
         },
         {
-          label: '100-year',
-          value: 'mcda100yrs',
+          label: 'Parks',
+          value: 'park',
         },
       ],
     },
@@ -361,11 +282,11 @@ const tooltipConfig = {
       },
     ],
   },
-  art_chapter: {
+  museum_chapter: {
     layer: 'buildings',
     features: [
       {
-        label: 'Building Type',
+        label: 'Type',
         value: 'category',
       },
     ],
@@ -379,39 +300,32 @@ const tooltipConfig = {
       },
     ],
   },
-  evacuation: {
-    layer: 'evacuation',
-    features: [
-      {
-        label: 'Name',
-        value: 'name',
-        type: 'title',
-      },
-      {
-        label: 'Capacity',
-        value: 'capacity',
-      },
-    ],
-  },
 };
-
+/*
+                  [0, '#000000'],
+                  [25000, '#660000'],
+                  [50000, '#112200'],
+                  [75000, '#052200'],
+                  [200000, '#006600']
+                  */
 
 // legend options
 const legendOptions = {
   landelevation3d: {
-    name: 'Land Elevation (m)',
-    colors: ['#ffffcc', '#c7e9b4', '#7fcdbb', '#41b6c4', '#1d91c0'],
+    name: 'Not being used',
+    colors: ['#660000', '#006600'],
     min: 2,
     max: 70,
     range: true,
   },
   landelevation: {
-    name: 'Land Elevation (m)',
-    colors: ['#ffffcc', '#c7e9b4', '#7fcdbb', '#41b6c4', '#1d91c0'],
-    min: 2,
-    max: 70,
+    name: 'Median Salary',
+    colors: ['#AA0000', '#00AA00'],
+    min: 25000,
+    max: 200000,
     range: true,
   },
+  /*
   flood: {
     name: 'Flood Hazard',
     colors: [
@@ -433,27 +347,6 @@ const legendOptions = {
       },
     ],
     range: false,
-  },
-  population: {
-    name: 'Population (per pixel) (40 sqm)',
-    colors: ['#feebe2', '#fbb4b9', '#f768a1', '#c51b8a', '#7a0177'],
-    min: 13,
-    max: 24,
-    range: true,
-  },
-  radius: {
-    name: 'Population Coverage',
-    colors: ['#feebe2', '#fbb4b9', '#f768a1', '#c51b8a', '#7a0177'],
-    min: '5,700',
-    max: '13,900',
-    range: true,
-  },
-  capacity: {
-    name: 'Estimated Capacity',
-    colors: ['#feebe2', '#fbb4b9', '#f768a1', '#c51b8a', '#7a0177'],
-    min: '120',
-    max: '2,750',
-    range: true,
   },
   suitability: {
     name: 'Suitability',
@@ -481,17 +374,18 @@ const legendOptions = {
     ],
     range: false,
   },
+  */
 };
 
 
 //chapter layers
 
 const chapterLayers = {
-  marikina: ['landelevation3d'],
-  art_chapter: ['landelevation'],
-  park_chapter: ['flood'],
-  evacuation: ['flood', 'landelevation'],
-  conclusion: ['suitability'],
+  marikina: ['landelevation'],
+  museum_chapter: ['landelevation'],
+  park_chapter: ['landelevation'],
+  salary_chapter: ['landelevation'],
+  conclusion: ['landelevation'],
 };
 
 const floodStops = [

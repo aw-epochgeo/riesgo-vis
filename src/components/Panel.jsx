@@ -72,7 +72,7 @@ export default class Panel extends React.Component {
           </Typography>
           <br></br>
         </section>
-        <section id="art_chapter">
+        <section id="museum_chapter">
           <Typography variant="h3">Arts and Museums</Typography>
           <Typography>
             Text about Los Angeles County. Display Arts and Museums.
@@ -100,7 +100,7 @@ export default class Panel extends React.Component {
             Text about Los Angeles County. Display parks.
           </Typography>
         </section>
-        <section id="evacuation">
+        <section id="salary_chapter">
           <Typography variant="h3">Average Salary</Typography>
           <Typography>
             Text about Los Angeles County. Display the average salary for each zipcode.
