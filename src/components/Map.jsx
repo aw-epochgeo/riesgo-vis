@@ -331,20 +331,6 @@ export default class Map extends React.Component {
         },
       }, 'waterway');
 
-      /*
-      this.map.addLayer({
-        id: 'evacuation',
-        type: 'symbol',
-        source: 'evacuation',
-        'source-layer': 'marikina_evac_centers',
-        layout: {
-          visibility: 'none',
-          'icon-image': '{icon}-15',
-          'icon-allow-overlap': true,
-        },
-      });
-      */
-
       this.map.addLayer({
         id: 'population',
         type: 'fill',

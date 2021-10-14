@@ -4,7 +4,7 @@ const bearing = 0.13;
 const zoom = 8;
 
 const chapters = {
-  marikina: {
+  intro_chapter: {
     paint: [
       {
         id: 'zip-fill',
@@ -168,7 +168,7 @@ const chapters = {
       duration: 800,
     },
   },
-  conclusion: {
+  conclusion_chapter: {
     paint: [
       {
         id: 'zip-fill',
@@ -221,7 +221,7 @@ const filters = {
   museum_chapter: [
     {
       hasAll: true,
-      value: 'buildingType',
+      value: 'attraction_type',
       label: 'Type',
       onChange: 'updateBuildingType',
       options: [
@@ -241,10 +241,22 @@ const filters = {
           label: 'Pier',
           value: 'pier',
         },
+        {
+          label: 'Observatory',
+          value: 'observatory',
+        },
+        {
+          label: 'Memorial',
+          value: 'memorial',
+        },
+        {
+          label: 'Other',
+          value: 'other',
+        },
       ],
     },
   ],
-  conclusion: [
+  conclusion_chapter: [
     {
       hasAll: false,
       value: 'iconFilter',
@@ -272,7 +284,7 @@ const filters = {
 //tooltips
 
 const tooltipConfig = {
-  marikina: {
+  intro_chapter: {
     layer: 'landelevation3d',
     features: [
       {
@@ -326,28 +338,6 @@ const legendOptions = {
     range: true,
   },
   /*
-  flood: {
-    name: 'Flood Hazard',
-    colors: [
-      {
-        label: 'Marginal',
-        color: '#ffffb2',
-      },
-      {
-        label: 'Low',
-        color: '#fecc5c',
-      },
-      {
-        label: 'Medium',
-        color: '#fd8d3c',
-      },
-      {
-        label: 'High',
-        color: '#e31a1c',
-      },
-    ],
-    range: false,
-  },
   suitability: {
     name: 'Suitability',
     colors: [
@@ -381,11 +371,11 @@ const legendOptions = {
 //chapter layers
 
 const chapterLayers = {
-  marikina: ['landelevation'],
+  intro_chapter: ['landelevation'],
   museum_chapter: ['landelevation'],
   park_chapter: ['landelevation'],
   salary_chapter: ['landelevation'],
-  conclusion: ['landelevation'],
+  conclusion_chapter: ['landelevation'],
 };
 
 const floodStops = [

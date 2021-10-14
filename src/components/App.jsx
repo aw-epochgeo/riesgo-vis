@@ -8,7 +8,7 @@ export default class App extends React.Component {
     super(props);
 
     this.state = {
-      chapterName: 'marikina',
+      chapterName: 'intro_chapter',
       buildingType: 'all',
       amenity: 'all',
       layer: 'flood',

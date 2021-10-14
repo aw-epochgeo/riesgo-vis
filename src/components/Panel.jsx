@@ -60,7 +60,7 @@ export default class Panel extends React.Component {
   render() {
     return (
       <div id="features" onScroll={this.handleScroll}>
-        <section id="marikina" className="active">
+        <section id="intro_chapter" className="active">
           <Typography variant="h3">Los Angeles County</Typography>
           <Typography>
             Text about Los Angeles County. Display the zipcode borders for Los Angeles.
@@ -101,7 +101,7 @@ export default class Panel extends React.Component {
           </Typography>
         </section>
         <section id="salary_chapter">
-          <Typography variant="h3">Average Salary</Typography>
+          <Typography variant="h3">Median Salary</Typography>
           <Typography>
             Text about Los Angeles County. Display the average salary for each zipcode.
           </Typography>
@@ -120,8 +120,8 @@ export default class Panel extends React.Component {
             Text about Los Angeles County. Display the average salary for each zipcode.
           </Typography>
         </section>
-        <section id="conclusion">
-          <Typography variant="h3">Combined</Typography>
+        <section id="conclusion_chapter">
+          <Typography variant="h3">Conclusion</Typography>
           <Typography>
             Text about Los Angeles County. Display the average salary for each zipcode, arts, and parks.
           </Typography>
