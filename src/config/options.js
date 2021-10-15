@@ -18,6 +18,10 @@ const chapters = {
         id: 'zip-borders-extrude',
         opacity: 0,
       },
+      {
+        id: 'cost-dstance-layer',
+        opacity: 0,
+      },
     ],
     layout: [
       {
@@ -77,6 +81,10 @@ const chapters = {
         id: 'parks-layer',
         visibility: 'none',
       },
+      {
+        id: 'cost-distance-layer',
+        visibility: 'none',
+      },
     ],
     position: {
       pitch: 0,
@@ -117,6 +125,10 @@ const chapters = {
       {
         id: 'parks-layer',
         visibility: 'visible',
+      },
+      {
+        id: 'cost-distance-layer',
+        visibility: 'none',
       },
     ],
     position: {
@@ -159,6 +171,10 @@ const chapters = {
         id: 'parks-layer',
         visibility: 'none',
       },
+      {
+        id: 'cost-distance-layer',
+        visibility: 'none',
+      },
     ],
     position: {
       pitch: 60,
@@ -168,7 +184,7 @@ const chapters = {
       duration: 800,
     },
   },
-  conclusion_chapter: {
+  cost_chapter: {
     paint: [
       {
         id: 'zip-fill',
@@ -194,15 +210,19 @@ const chapters = {
       },
       {
         id: 'museums-layer',
-        visibility: 'visible',
+        visibility: 'none',
       },
       {
         id: 'parks-layer',
+        visibility: 'none',
+      },
+      {
+        id: 'cost-distance-layer',
         visibility: 'visible',
       },
     ],
     position: {
-      pitch: 0,
+      pitch: 60,
       bearing: 0,
       zoom: 8,
       center,
@@ -298,7 +318,7 @@ const filters = {
       ],
     },
   ],
-  conclusion_chapter: [
+  cost_chapter: [
     {
       hasAll: false,
       value: 'iconFilter',
@@ -354,7 +374,8 @@ const tooltipConfig = {
       },
     ],
   },
-  conclusion_chapter: {
+  /*
+  cost_chapter: {
     layer: 'parks-layer',
     features: [
       {
@@ -363,7 +384,7 @@ const tooltipConfig = {
       },
     ],
   },
-  conclusion_chapter: {
+  cost_chapter: {
     layer: 'museums-layer',
     features: [
       {
@@ -371,7 +392,7 @@ const tooltipConfig = {
         value: 'Name',
       },
     ],
-  },
+  },*/
 };
 
 // legend options
@@ -435,7 +456,7 @@ const chapterLayers = {
   museum_chapter: ['salary_legend'],
   park_chapter: ['salary_legend'],
   salary_chapter: ['salary_legend'],
-  conclusion_chapter: ['salary_legend'],
+  cost_chapter: ['salary_legend'],
 };
 
 const floodStops = [

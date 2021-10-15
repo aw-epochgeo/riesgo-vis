@@ -120,34 +120,16 @@ export default class Panel extends React.Component {
             Text about Los Angeles County. Display the average salary for each zipcode.
           </Typography>
         </section>
-        <section id="conclusion_chapter">
-          <Typography variant="h3">Conclusion</Typography>
+        <section id="cost_chapter">
+          <Typography variant="h3">Cost Distance</Typography>
           <Typography>
-            Text about Los Angeles County. Display the average salary for each zipcode, arts, and parks.
+            Text about Los Angeles County. Display the cost distance analysis.
           </Typography>
           <br></br>
           <Typography>
-            Text about Los Angeles County. Display the average salary for each zipcode, arts, and parks.
+            Text about Los Angeles County. Display the cost distance analysis.
           </Typography>
           <br></br>
-          <Typography> 
-            Text about Los Angeles County. Display the average salary for each zipcode, arts, and parks.
-          </Typography>
-          <br></br>
-          <Typography variant="h6">Subtitle</Typography>
-          <Typography>
-            Text about Los Angeles County. Display the average salary for each zipcode, arts, and parks.
-          </Typography>
-          <br></br>
-          <Typography variant="h6">Subtitle</Typography>
-          <Typography>
-            Text about Los Angeles County. Display the average salary for each zipcode, arts, and parks.
-          </Typography>
-          <br></br>
-          <Typography variant="h6">Subtitle</Typography>
-          <Typography>
-            Text about Los Angeles County. Display the average salary for each zipcode, arts, and parks.
-          </Typography>
         </section>
       </div>
     );

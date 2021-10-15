@@ -8,7 +8,8 @@ import {
   chapters, floodStops, suitabilityStops, isoStops, tooltipConfig,
 } from '../config/options';
 
-mapboxgl.accessToken = 'pk.eyJ1IjoiYnJpYW5laGVueW8iLCJhIjoiY2pndWV6dThmMTJlYTJxcTl5aDBoNTg5aSJ9.4qHmp0Q31Yuntdp6Ee_x-A';
+//mapboxgl.accessToken = 'pk.eyJ1IjoiYnJpYW5laGVueW8iLCJhIjoiY2pndWV6dThmMTJlYTJxcTl5aDBoNTg5aSJ9.4qHmp0Q31Yuntdp6Ee_x-A';
+mapboxgl.accessToken = 'pk.eyJ1IjoiYWxleHJ3YWxrZXIiLCJhIjoiY2t1ZnBzM3B6MXdsZjJubXp3MzF5cWFxZiJ9.Of5G1YXwvgqYUc0xvxP2mg';
 
 export default class Map extends React.Component {
   constructor(props) {
@@ -98,50 +99,69 @@ export default class Map extends React.Component {
         data: '/data/art_museums_new.geojson'
       });
 
+      this.map.addSource('cost-distance-source', {
+        type: 'raster',
+        url: 'mapbox://alexrwalker.c8yk9yr0',
+      });
 
-    /*Load images to be used as icons*/
-    this.map.loadImage(
-      '/data/icons/museum.png',
-      (error, image) => {
-        if (error) throw error;
-        // Add the image to the map style.
-        this.map.addImage('museum', image);
-      }
-    );
-    this.map.loadImage(
-      '/data/icons/tree.png',
-      (error, image) => {
-        if (error) throw error;
-        // Add the image to the map style.
-        this.map.addImage('park', image);
-      }
-    );
 
-    // The feature-state dependent fill-opacity expression will render the hover effect
-    // when a feature's hover state is set to true.
-    this.map.addLayer({
-      id: 'museums-layer',
-      type: 'symbol',
-      source: 'museums',
-      layout: {
+      /*Load images to be used as icons*/
+      this.map.loadImage(
+        '/data/icons/museum.png',
+        (error, image) => {
+        if (error) throw error;
+          // Add the image to the map style.
+          this.map.addImage('museum', image);
+        }
+      );
+      this.map.loadImage(
+        '/data/icons/tree.png',
+        (error, image) => {
+        if (error) throw error;
+          // Add the image to the map style.
+          this.map.addImage('park', image);
+        }
+      );
+
+
+      /* create layers from sources*/
+      this.map.addLayer({
+        id: 'cost-distance-layer',
+        type: 'raster',
+        source: 'cost-distance-source',
+        paint: {
+          'raster-fade-duration': 0,
+        },
+        layout: {
+            visibility: 'visible',
+        }
+      });
+
+      // The feature-state dependent fill-opacity expression will render the hover effect
+      // when a feature's hover state is set to true.
+      this.map.addLayer({
+        id: 'museums-layer',
+        type: 'symbol',
+        source: 'museums',
+        layout: {
           visibility: 'none',
           'icon-image': 'museum',
           'icon-size': 0.035
-      }
-    });
+        }
+      });
 
-    // The feature-state dependent fill-opacity expression will render the hover effect
-    // when a feature's hover state is set to true.
-    this.map.addLayer({
-      id: 'parks-layer',
-      type: 'symbol',
-      source: 'parks',
-      layout: {
-          visibility: 'none',
-        'icon-image': 'park',
-        'icon-size': 0.035
-      }
-    });
+      // The feature-state dependent fill-opacity expression will render the hover effect
+      // when a feature's hover state is set to true.
+      this.map.addLayer({
+        id: 'parks-layer',
+        type: 'symbol',
+        source: 'parks',
+        layout: {
+            visibility: 'none',
+          'icon-image': 'park',
+          'icon-size': 0.035
+        }
+      });
 
       this.map.addLayer({
         id: 'zip-fill',
