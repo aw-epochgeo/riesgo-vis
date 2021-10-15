@@ -318,28 +318,6 @@ const filters = {
       ],
     },
   ],
-  cost_chapter: [
-    {
-      hasAll: false,
-      value: 'iconFilter',
-      label: 'Type:',
-      onChange: 'updateAmenity',
-      options: [
-        {
-          label: 'All',
-          value: 'all',
-        },
-        {
-          label: 'Museums',
-          value: 'museum',
-        },
-        {
-          label: 'Parks',
-          value: 'park',
-        },
-      ],
-    },
-  ],
 };
 
 
@@ -361,7 +339,7 @@ const tooltipConfig = {
     features: [
       {
         label: 'Name:',
-        value: 'Name',
+        value: 'PARK_NAME',
       },
     ],
   },

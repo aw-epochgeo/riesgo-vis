@@ -92,7 +92,7 @@ export default class Map extends React.Component {
       });
       this.map.addSource('parks', {
         type: 'geojson',
-        data: '/data/parks.geojson'
+        data: '/data/parks_new.geojson'
       });
       this.map.addSource('museums', {
         type: 'geojson',
@@ -133,7 +133,7 @@ export default class Map extends React.Component {
           'raster-fade-duration': 0,
         },
         layout: {
-            visibility: 'visible',
+            visibility: 'none',
         }
       });
 
@@ -552,17 +552,20 @@ export default class Map extends React.Component {
 
         this.map.easeTo(position);
 
+        /*
         // Try filter buildings based on chapterName
         if (nextProps.chapterName === 'park_chapter') {
           this.map.setFilter('buildings', ['<=', 'fhm005yrs', 2]);
         } else {
           this.map.setFilter('buildings', undefined);
         }
+        */
       }
 
       if (nextProps.amenity) {
         if (nextProps.amenity !== amenity) {
           if (nextProps.amenity !== 'all') {
+            console.log(nextProps.amenity);
             //this.map.setFilter('evacuation', ['==', 'amenity', nextProps.amenity]);
             this.map.setFilter('museums-layer', ['==', 'amenity', nextProps.amenity]);
             this.map.setFilter('parks-layer', ['==', 'amenity', nextProps.amenity]);
