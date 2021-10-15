@@ -3,6 +3,8 @@ const pitch = 0;
 const bearing = 0.13;
 const zoom = 8;
 
+/* START CHAPTERS */
+
 const chapters = {
   intro_chapter: {
     paint: [
@@ -230,6 +232,9 @@ const chapters = {
     },
   }
 };
+
+/* END CHAPTERS */
+
 
 const legendLabels = {
   empty: 'No Legend',
