@@ -63,7 +63,7 @@ export default class Panel extends React.Component {
         <section id="intro_chapter" className="active">
           <Typography variant="h3">Los Angeles County</Typography>
           <Typography>
-            Text about Los Angeles County. Display the zipcode borders for Los Angeles.
+            Text about Los Angeles County. Display the zipcode borders for Los Angeles. There are 312 zipcodes on display.
           </Typography>
           <br></br>
           <Typography variant="h6">Subtitle</Typography>
@@ -75,44 +75,32 @@ export default class Panel extends React.Component {
         <section id="museum_chapter">
           <Typography variant="h3">Arts and Museums</Typography>
           <Typography>
-            Text about Los Angeles County. Display Arts and Museums.
+            Text about Los Angeles County. There are 89 data points for Arts and Museums.
           </Typography>
           <br></br>
           <Typography variant="h6">Subtitle</Typography>
           <Typography>
             Text about Los Angeles County. Display Arts and Museums.
+            <div>Icon made by <a href="https://www.freepik.com" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></div>
           </Typography>
           <br></br>
         </section>
         <section id="park_chapter">
           <Typography variant="h3">Parks</Typography>
           <Typography>
-            Text about Los Angeles County. Display parks.
+            Text about Los Angeles County. There are 2720 park data points.
           </Typography>
           <br></br>
           <Typography variant="h6">Subtitle</Typography>
           <Typography>
             Text about Los Angeles County. Display parks.
-          </Typography>
-          <br></br>
-          <Typography variant="h6">Subtitle</Typography>
-          <Typography>
-            Text about Los Angeles County. Display parks.
+            <div>Icon made by <a href="https://www.freepik.com" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></div>
           </Typography>
         </section>
         <section id="salary_chapter">
           <Typography variant="h3">Median Salary</Typography>
           <Typography>
-            Text about Los Angeles County. Display the average salary for each zipcode.
-          </Typography>
-          <br></br>
-          <Typography>
-            Text about Los Angeles County. Display the average salary for each zipcode.
-          </Typography>
-          <br></br>
-          <br></br>
-          <Typography>
-            Text about Los Angeles County. Display the average salary for each zipcode.
+            Text about Los Angeles County. Display the average salary for each zipcode. Use extrusions to show the value of median salary for each zip code.
           </Typography>
           <br></br>
           <Typography variant="h6">Subtitle</Typography>
@@ -123,9 +111,10 @@ export default class Panel extends React.Component {
         <section id="cost_chapter">
           <Typography variant="h3">Cost Distance</Typography>
           <Typography>
-            Text about Los Angeles County. Display the cost distance analysis.
+            Text about Los Angeles County. Display the cost distance analysis. Using a .tif file hosted by mapbox.
           </Typography>
           <br></br>
+          <Typography variant="h6">Subtitle</Typography>
           <Typography>
             Text about Los Angeles County. Display the cost distance analysis.
           </Typography>

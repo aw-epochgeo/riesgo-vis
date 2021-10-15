@@ -106,6 +106,8 @@ export default class Map extends React.Component {
 
 
       /*Load images to be used as icons*/
+
+      /*<div>Icons made by <a href="https://www.freepik.com" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></div>*/
       this.map.loadImage(
         '/data/icons/museum.png',
         (error, image) => {
@@ -114,6 +116,8 @@ export default class Map extends React.Component {
           this.map.addImage('museum', image);
         }
       );
+
+      /*<div>Icons made by <a href="https://www.freepik.com" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></div>*/
       this.map.loadImage(
         '/data/icons/tree.png',
         (error, image) => {
@@ -172,7 +176,8 @@ export default class Map extends React.Component {
           'fill-color': {
               property: 'SALARY',
               stops: [
-                  [0, '#AA6666'],
+                  [0, '#000000'],
+                  [1, '#AA6666'],
                   [200000, '#00AA00']
               ],
             },
@@ -180,7 +185,7 @@ export default class Map extends React.Component {
           'case',
           ['boolean', ['feature-state', 'hover'], false],
             1,
-            0.5
+            0.75
           ]
         }
       });
@@ -205,11 +210,12 @@ export default class Map extends React.Component {
           'fill-extrusion-color': {
               property: 'SALARY',
               stops: [
-                  [0, '#AA6666'],
+                  [0, '#000000'],
+                  [1, '#AA6666'],
                   [200000, '#00AA00']
               ],
             },
-            'fill-extrusion-height': ['*', .005, ['get', 'SALARY']],
+            'fill-extrusion-height': ['*', .01, ['get', 'SALARY']],
             // Make extrusions slightly opaque to see through indoor walls.
             'fill-extrusion-opacity': 0
           },

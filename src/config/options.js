@@ -10,7 +10,7 @@ const chapters = {
     paint: [
       {
         id: 'zip-fill',
-        opacity: 0.5,
+        opacity: 0.75,
       },
       {
         id: 'zip-borders',
@@ -330,12 +330,11 @@ const filters = {
 
 const tooltipConfig = {
   intro_chapter: {
-    layer: 'landelevation3d',
+    layer: 'zip-fill',
     features: [
       {
-        label: 'meters above sea level',
-        value: 'value',
-        type: 'inline',
+        label: 'Median Salary:',
+        value: 'SALARY',
       },
     ],
   },
@@ -344,7 +343,7 @@ const tooltipConfig = {
     features: [
       {
         label: 'Name:',
-        value: 'PARK_NAME',
+        value: 'Name',
       },
     ],
   },
@@ -354,6 +353,15 @@ const tooltipConfig = {
       {
         label: 'Name:',
         value: 'PARK_NAME',
+      },
+    ],
+  },
+  salary_chapter: {
+    layer: 'zip-borders-extrude',
+    features: [
+      {
+        label: 'Median Salary:',
+        value: 'SALARY',
       },
     ],
   },
@@ -386,6 +394,24 @@ const legendOptions = {
     min: 2,
     max: 70,
     range: true,
+  },
+  empty: {
+    name: '',
+    colors: [
+      {
+        label: 'first',
+        color: '#000000'
+      },
+      {
+        label: 'second',
+        color: '#888888'
+      },
+      {
+        label: 'last',
+        color: '#FFFFFF'
+      },
+    ],
+    range: false,
   },
   landelevation: {
     name: 'Median Salary',
