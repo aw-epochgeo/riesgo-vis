@@ -60,9 +60,19 @@ export default class Map extends React.Component {
         data: '/data/art_museums_new.geojson'
       });
 
-      this.map.addSource('cost-distance-source', {
+      this.map.addSource('cost-distance-museums-source', {
         type: 'raster',
-        url: 'mapbox://alexrwalker.c8yk9yr0',
+        url: 'mapbox://alexrwalker.c56wj9ki',
+      });
+
+      this.map.addSource('cost-distance-parks-source', {
+        type: 'raster',
+        url: 'mapbox://alexrwalker.d20lg529',
+      });
+
+      this.map.addSource('cost-distance-both-source', {
+        type: 'raster',
+        url: 'mapbox://alexrwalker.0d1i1103',
       });
 
       this.map.addSource('hexagon-source', {
@@ -97,9 +107,31 @@ export default class Map extends React.Component {
       /* create layers from sources*/
       
       this.map.addLayer({
-        id: 'cost-distance-layer',
+        id: 'cost-distance-museums-layer',
         type: 'raster',
-        source: 'cost-distance-source',
+        source: 'cost-distance-museums-source',
+        paint: {
+          'raster-fade-duration': 0,
+        },
+        layout: {
+            visibility: 'none',
+        }
+      });
+      this.map.addLayer({
+        id: 'cost-distance-parks-layer',
+        type: 'raster',
+        source: 'cost-distance-parks-source',
+        paint: {
+          'raster-fade-duration': 0,
+        },
+        layout: {
+            visibility: 'none',
+        }
+      });
+      this.map.addLayer({
+        id: 'cost-distance-both-layer',
+        type: 'raster',
+        source: 'cost-distance-both-source',
         paint: {
           'raster-fade-duration': 0,
         },
@@ -197,8 +229,8 @@ export default class Map extends React.Component {
           'fill-extrusion-color': {
               property: 'Total_Coun',
               stops: [
-                  [0, '#0000FF'],
-                  [7, '#FF0000']
+                  [0, '#FF0000'],
+                  [7, '#00FF00']
               ],
             },
             'fill-extrusion-height': ['*', 1000, ['get', 'Total_Coun']],

@@ -21,10 +21,6 @@ const chapters = {
         opacity: 0,
       },
       {
-        id: 'cost-dstance-layer',
-        opacity: 0,
-      },
-      {
         id: 'hexagon-layer',
         opacity: 1,
       }
@@ -36,6 +32,18 @@ const chapters = {
       },
       {
         id: 'parks-layer',
+        visibility: 'none',
+      },
+      {
+        id: 'cost-distance-museums-layer',
+        visibility: 'none',
+      },
+      {
+        id: 'cost-distance-parks-layer',
+        visibility: 'none',
+      },
+      {
+        id: 'cost-distance-both-layer',
         visibility: 'none',
       },
     ],
@@ -76,7 +84,15 @@ const chapters = {
         visibility: 'none',
       },
       {
-        id: 'cost-distance-layer',
+        id: 'cost-distance-museums-layer',
+        visibility: 'visible',
+      },
+      {
+        id: 'cost-distance-parks-layer',
+        visibility: 'none',
+      },
+      {
+        id: 'cost-distance-both-layer',
         visibility: 'none',
       },
     ],
@@ -117,7 +133,15 @@ const chapters = {
         visibility: 'visible',
       },
       {
-        id: 'cost-distance-layer',
+        id: 'cost-distance-museums-layer',
+        visibility: 'none',
+      },
+      {
+        id: 'cost-distance-parks-layer',
+        visibility: 'visible',
+      },
+      {
+        id: 'cost-distance-both-layer',
         visibility: 'none',
       },
     ],
@@ -158,8 +182,16 @@ const chapters = {
         visibility: 'none',
       },
       {
-        id: 'cost-distance-layer',
+        id: 'cost-distance-museums-layer',
         visibility: 'none',
+      },
+      {
+        id: 'cost-distance-parks-layer',
+        visibility: 'none',
+      },
+      {
+        id: 'cost-distance-both-layer',
+        visibility: 'visible',
       },
     ],
     position: {
@@ -340,6 +372,13 @@ const legendOptions = {
     max: 200000,
     range: true,
   },
+  transportation_legend: {
+    name: 'Modes of Transportation',
+    colors: ['#AA0000', '#00AA00'],
+    min: 0,
+    max: 7,
+    range: true,
+  },
   salary_legend: {
     name: 'Median Salary',
     colors: ['#AA0000', '#00AA00'],
@@ -381,7 +420,7 @@ const legendOptions = {
 //chapter layers
 
 const chapterLayers = {
-  intro_chapter: ['salary_legend'],
+  intro_chapter: ['transportation_legend'],
   museum_chapter: ['salary_legend'],
   park_chapter: ['salary_legend'],
   quality_chapter: ['salary_legend'],
