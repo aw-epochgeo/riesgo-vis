@@ -37,52 +37,13 @@ export default class Map extends React.Component {
       zoom,
       minZoom: 7,
       maxZoom: 15,
-      pitch: 0,
+      pitch: 60,
       bearing: 0.13,
     });
 
     this.map.addControl(new mapboxgl.NavigationControl(), 'top-right');
 
     this.map.on('style.load', () => {
-      this.map.addSource('riesgo', {
-        type: 'vector',
-        url: 'mapbox://unissechua.8kcfu1fc',
-      });
-
-      this.map.addSource('landelevation', {
-        type: 'vector',
-        url: 'mapbox://unissechua.54ft2aw9',
-      });
-
-      this.map.addSource('radius', {
-        type: 'vector',
-        url: 'mapbox://unissechua.78x6pdi0',
-      });
-
-      this.map.addSource('buildings', {
-        type: 'vector',
-        url: 'mapbox://unissechua.bnoseblw',
-      });
-
-      this.map.addSource('boundary', {
-        type: 'geojson',
-        data: 'data/marikina_boundary.geojson',
-      });
-
-      this.map.addSource('population', {
-        type: 'vector',
-        url: 'mapbox://unissechua.djetk3sb',
-      });
-
-      this.map.addSource('isochrones', {
-        type: 'vector',
-        url: 'mapbox://unissechua.166d592u',
-      });
-
-      this.map.addSource('areas', {
-        type: 'geojson',
-        data: 'data/areas_of_interest.geojson',
-      });
 
       /* LA County Additions */
 
@@ -102,6 +63,11 @@ export default class Map extends React.Component {
       this.map.addSource('cost-distance-source', {
         type: 'raster',
         url: 'mapbox://alexrwalker.c8yk9yr0',
+      });
+
+      this.map.addSource('hexagon-source', {
+        type: 'vector',
+        url: 'mapbox://alexrwalker.2fbojb14',
       });
 
 
@@ -129,6 +95,7 @@ export default class Map extends React.Component {
 
 
       /* create layers from sources*/
+      
       this.map.addLayer({
         id: 'cost-distance-layer',
         type: 'raster',
@@ -140,7 +107,7 @@ export default class Map extends React.Component {
             visibility: 'none',
         }
       });
-
+      
       // The feature-state dependent fill-opacity expression will render the hover effect
       // when a feature's hover state is set to true.
       this.map.addLayer({
@@ -185,7 +152,7 @@ export default class Map extends React.Component {
           'case',
           ['boolean', ['feature-state', 'hover'], false],
             1,
-            0.75
+            0.0
           ]
         }
       });
@@ -221,284 +188,30 @@ export default class Map extends React.Component {
           },
       });
 
+      this.map.addLayer({
+        id: 'hexagon-layer',
+        type: 'fill-extrusion',
+        source: 'hexagon-source',
+        'source-layer': 'Transportation_count-9179m8', // name of tilesets
+        'paint': {
+          'fill-extrusion-color': {
+              property: 'Total_Coun',
+              stops: [
+                  [0, '#0000FF'],
+                  [7, '#FF0000']
+              ],
+            },
+            'fill-extrusion-height': ['*', 1000, ['get', 'Total_Coun']],
+            // Make extrusions slightly opaque to see through indoor walls.
+            'fill-extrusion-opacity': .7
+        },
+        layout: {
+            visibility: 'visible',
+        }
+      });
+
       /*End of LA County Additions*/
 
-
-      this.map.addLayer({
-        id: 'boundary',
-        type: 'line',
-        source: 'boundary',
-        paint: {
-          'line-color': '#090909',
-          'line-opacity': 0,
-          'line-width': 2,
-        },
-      }, 'waterway');
-
-      this.map.addLayer({
-        id: 'landelevation3d',
-        type: 'fill-extrusion',
-        source: 'landelevation',
-        'source-layer': 'landelevation_100x100',
-        paint: {
-          'fill-extrusion-color': {
-            property: 'value',
-            stops: [
-              [2, '#ffffcc'],
-              [17, '#c7e9b4'],
-              [35, '#7fcdbb'],
-              [52, '#41b6c4'],
-              [70, '#1d91c0'],
-            ],
-          },
-          'fill-extrusion-height': ['*', 10, ['number', ['get', 'value'], 1]],
-          'fill-extrusion-opacity': 0.5,
-          'fill-extrusion-opacity-transition': {
-            duration: 800,
-            delay: 0,
-          },
-        },
-      }, 'waterway');
-
-      this.map.addLayer({
-        id: 'landelevation',
-        type: 'fill',
-        source: 'landelevation',
-        'source-layer': 'landelevation_100x100',
-        paint: {
-          'fill-color': {
-            property: 'value',
-            stops: [
-              [2, '#ffffcc'],
-              [17, '#c7e9b4'],
-              [35, '#7fcdbb'],
-              [52, '#41b6c4'],
-              [70, '#1d91c0'],
-            ],
-          },
-          'fill-opacity': 0,
-          'fill-opacity-transition': {
-            duration: 800,
-            delay: 0,
-          },
-        },
-      }, 'waterway');
-
-      this.map.addLayer({
-        id: 'flood',
-        type: 'fill',
-        source: 'riesgo',
-        'source-layer': 'riesgo',
-        paint: {
-          'fill-color': {
-            property: 'fhm005yrs',
-            stops: [
-              [1, '#e31a1c'],
-              [2, '#fd8d3c'],
-              [3, '#fecc5c'],
-              [4, '#ffffb2'],
-            ],
-          },
-          'fill-opacity': 0,
-          'fill-opacity-transition': {
-            duration: 800,
-            delay: 0,
-          },
-        },
-      }, 'waterway');
-
-      this.map.addLayer({
-        id: 'radius',
-        type: 'fill',
-        source: 'radius',
-        'source-layer': 'radius_coverage',
-        paint: {
-          'fill-opacity': 0,
-          'fill-opacity-transition': {
-            duration: 800,
-            delay: 0,
-          },
-          'fill-outline-color': '#49006a',
-          'fill-color': {
-            property: 'pop_coverage',
-            stops: [
-              [5700, '#feebe2'],
-              [9200, '#fbb4b9'],
-              [10500, '#f768a1'],
-              [11800, '#c51b8a'],
-              [13900, '#7a0177'],
-            ],
-          },
-        },
-      });
-
-      this.map.addLayer({
-        id: 'suitability',
-        type: 'fill',
-        source: 'riesgo',
-        'source-layer': 'riesgo',
-        paint: {
-          'fill-color': {
-            property: 'mcda005yrs',
-            stops: [
-              [1, '#000000'],
-              [2, '#b2182b'],
-              [3, '#ef8a62'],
-              [4, '#67a9cf'],
-              [5, '#2166ac'],
-            ],
-          },
-          'fill-opacity': 0,
-          'fill-opacity-transition': {
-            duration: 800,
-            delay: 0,
-          },
-        },
-      }, 'waterway');
-
-      this.map.addLayer({
-        id: 'population',
-        type: 'fill',
-        source: 'population',
-        'source-layer': 'marikina_pop',
-        paint: {
-          'fill-color': {
-            property: 'value',
-            stops: [
-              [0, '#feebe2'],
-              [13, '#fbb4b9'],
-              [16, '#f768a1'],
-              [21, '#c51b8a'],
-              [24, '#7a0177'],
-            ],
-          },
-          'fill-opacity': 0,
-          'fill-opacity-transition': {
-            duration: 800,
-            delay: 0,
-          },
-        },
-      }, 'waterway');
-
-      this.map.addLayer({
-        id: 'walking',
-        type: 'fill',
-        source: 'isochrones',
-        'source-layer': 'walkingiso',
-        paint: {
-          'fill-color': {
-            property: 'AA_MINS',
-            stops: [
-              [5, '#feb24c'],
-              [10, '#feb24c'],
-              [15, '#feb24c'],
-              [20, '#fd8d3c'],
-              [25, '#f03b20'],
-              [30, '#bd0026'],
-            ],
-          },
-          'fill-outline-color': '#090909',
-          'fill-opacity': 0,
-          'fill-opacity-transition': {
-            duration: 800,
-            delay: 0,
-          },
-        },
-        filter: ['==', 'AA_MINS', 5],
-      }, 'waterway');
-
-      this.map.addLayer({
-        id: 'buildings',
-        type: 'fill',
-        source: 'buildings',
-        'source-layer': 'marikina_buildings_features',
-        paint: {
-          'fill-color': '#38316e',
-          'fill-opacity': 0,
-          'fill-opacity-transition': {
-            duration: 800,
-            delay: 0,
-          },
-          'fill-outline-color': '#38316e',
-        },
-      }, 'waterway');
-
-      this.map.addLayer({
-        id: 'labels',
-        type: 'symbol',
-        source: {
-          type: 'geojson',
-          data: {
-            type: 'FeatureCollection',
-            features: [{
-              type: 'Feature',
-              properties: {
-                name: 'Marikina River',
-                size: 12,
-              },
-              geometry: {
-                type: 'Point',
-                coordinates: [121.08634085311045, 14.634044503866145],
-              },
-            },
-            {
-              type: 'Feature',
-              properties: {
-                name: 'Marikina City',
-                size: 20,
-              },
-              geometry: {
-                type: 'Point',
-                coordinates: [121.10887595008319, 14.652422188794105],
-              },
-            }],
-          },
-        },
-        layout: {
-          'text-field': '{name}',
-          'text-font': ['Open Sans Bold', 'Arial Unicode MS Bold'],
-          'text-size': ['get', 'size'],
-          'text-transform': 'uppercase',
-          'text-letter-spacing': 0.05,
-          'text-offset': [0, 1.5],
-        },
-        paint: {
-          'text-color': '#303',
-          'text-halo-color': '#f9f6e7',
-          'text-halo-width': 2,
-        },
-      });
-
-      this.map.addLayer({
-        id: 'aoe',
-        type: 'line',
-        source: 'areas',
-        paint: {
-          'line-color': '#303',
-          'line-width': 3,
-          'line-opacity': 0,
-        },
-      });
-
-      this.map.addLayer({
-        id: 'aoe_labels',
-        type: 'symbol',
-        source: 'areas',
-        layout: {
-          'text-field': '{name}',
-          'text-font': ['Open Sans Bold', 'Arial Unicode MS Bold'],
-          'text-size': 10,
-          'text-transform': 'uppercase',
-          'text-letter-spacing': 0.05,
-          'text-offset': [0, 1.5],
-          visibility: 'none',
-        },
-        paint: {
-          'text-color': '#303',
-          'text-halo-color': '#f9f6e7',
-          'text-halo-width': 2,
-        },
-      });
     });
 
 

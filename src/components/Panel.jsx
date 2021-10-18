@@ -97,7 +97,7 @@ export default class Panel extends React.Component {
             <div>Icon made by <a href="https://www.freepik.com" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></div>
           </Typography>
         </section>
-        <section id="salary_chapter">
+        <section id="quality_chapter">
           <Typography variant="h3">Median Salary</Typography>
           <Typography>
             Text about Los Angeles County. Display the average salary for each zipcode. Use extrusions to show the value of median salary for each zip code.
@@ -107,18 +107,6 @@ export default class Panel extends React.Component {
           <Typography>
             Text about Los Angeles County. Display the average salary for each zipcode.
           </Typography>
-        </section>
-        <section id="cost_chapter">
-          <Typography variant="h3">Cost Distance</Typography>
-          <Typography>
-            Text about Los Angeles County. Display the cost distance analysis. Using a .tif file hosted by mapbox.
-          </Typography>
-          <br></br>
-          <Typography variant="h6">Subtitle</Typography>
-          <Typography>
-            Text about Los Angeles County. Display the cost distance analysis.
-          </Typography>
-          <br></br>
         </section>
       </div>
     );

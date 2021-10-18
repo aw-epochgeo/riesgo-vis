@@ -1,5 +1,5 @@
 const center = [-118.2437, 34.0522];
-const pitch = 0;
+const pitch = 60;
 const bearing = 0.13;
 const zoom = 8;
 
@@ -24,16 +24,12 @@ const chapters = {
         id: 'cost-dstance-layer',
         opacity: 0,
       },
+      {
+        id: 'hexagon-layer',
+        opacity: 1,
+      }
     ],
     layout: [
-      {
-        id: 'labels',
-        visibility: 'none',
-      },
-      {
-        id: 'aoe_labels',
-        visibility: 'none',
-      },
       {
         id: 'museums-layer',
         visibility: 'none',
@@ -44,7 +40,7 @@ const chapters = {
       },
     ],
     position: {
-      pitch: 0,
+      pitch: 60,
       bearing: 0,
       zoom,
       center,
@@ -65,16 +61,12 @@ const chapters = {
         id: 'zip-borders-extrude',
         opacity: 0,
       },
+      {
+        id: 'hexagon-layer',
+        opacity: 0,
+      }
     ],
     layout: [
-      {
-        id: 'labels',
-        visibility: 'none',
-      },
-      {
-        id: 'aoe_labels',
-        visibility: 'none',
-      },
       {
         id: 'museums-layer',
         visibility: 'visible',
@@ -91,8 +83,8 @@ const chapters = {
     position: {
       pitch: 0,
       bearing: 0,
-      zoom: 9,
-      center,
+      zoom: 8,
+      center: [-118.2437, 34.05],
       duration: 800,
     },
   },
@@ -110,16 +102,12 @@ const chapters = {
         id: 'zip-borders-extrude',
         opacity: 0,
       },
+      {
+        id: 'hexagon-layer',
+        opacity: 0,
+      }
     ],
     layout: [
-      {
-        id: 'labels',
-        visibility: 'none',
-      },
-      {
-        id: 'aoe_labels',
-        visibility: 'none',
-      },
       {
         id: 'museums-layer',
         visibility: 'none',
@@ -136,12 +124,12 @@ const chapters = {
     position: {
       pitch: 0,
       bearing: 0,
-      zoom: 9,
+      zoom: 8,
       center,
       duration: 800,
     },
   },
-  salary_chapter: {
+  quality_chapter: {
     paint: [
       {
         id: 'zip-fill',
@@ -155,16 +143,12 @@ const chapters = {
         id: 'zip-borders-extrude',
         opacity: .75,
       },
+      {
+        id: 'hexagon-layer',
+        opacity: 0,
+      }
     ],
     layout: [
-      {
-        id: 'labels',
-        visibility: 'none',
-      },
-      {
-        id: 'aoe_labels',
-        visibility: 'none',
-      },
       {
         id: 'museums-layer',
         visibility: 'none',
@@ -182,51 +166,6 @@ const chapters = {
       pitch: 60,
       bearing: 0,
       zoom: 9,
-      center,
-      duration: 800,
-    },
-  },
-  cost_chapter: {
-    paint: [
-      {
-        id: 'zip-fill',
-        opacity: .5,
-      },
-      {
-        id: 'zip-borders',
-        opacity: .6,
-      },
-      {
-        id: 'zip-borders-extrude',
-        opacity: 0,
-      },
-    ],
-    layout: [
-      {
-        id: 'labels',
-        visibility: 'none',
-      },
-      {
-        id: 'aoe_labels',
-        visibility: 'none',
-      },
-      {
-        id: 'museums-layer',
-        visibility: 'none',
-      },
-      {
-        id: 'parks-layer',
-        visibility: 'none',
-      },
-      {
-        id: 'cost-distance-layer',
-        visibility: 'visible',
-      },
-    ],
-    position: {
-      pitch: 60,
-      bearing: 0,
-      zoom: 8,
       center,
       duration: 800,
     },
@@ -356,7 +295,7 @@ const tooltipConfig = {
       },
     ],
   },
-  salary_chapter: {
+  quality_chapter: {
     layer: 'zip-borders-extrude',
     features: [
       {
@@ -365,25 +304,6 @@ const tooltipConfig = {
       },
     ],
   },
-  /*
-  cost_chapter: {
-    layer: 'parks-layer',
-    features: [
-      {
-        label: 'Name:',
-        value: 'PARK_NAME',
-      },
-    ],
-  },
-  cost_chapter: {
-    layer: 'museums-layer',
-    features: [
-      {
-        label: 'Name:',
-        value: 'Name',
-      },
-    ],
-  },*/
 };
 
 // legend options
@@ -464,8 +384,7 @@ const chapterLayers = {
   intro_chapter: ['salary_legend'],
   museum_chapter: ['salary_legend'],
   park_chapter: ['salary_legend'],
-  salary_chapter: ['salary_legend'],
-  cost_chapter: ['salary_legend'],
+  quality_chapter: ['salary_legend'],
 };
 
 const floodStops = [
