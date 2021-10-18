@@ -301,11 +301,11 @@ const filters = {
 
 const tooltipConfig = {
   intro_chapter: {
-    layer: 'zip-fill',
+    layer: 'hexagon-layer',
     features: [
       {
-        label: 'Median Salary:',
-        value: 'SALARY',
+        label: 'Modes of Transport:',
+        value: 'Total_Coun',
       },
     ],
   },
