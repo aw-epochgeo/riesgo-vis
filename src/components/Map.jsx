@@ -42,6 +42,7 @@ export default class Map extends React.Component {
       maxZoom: 15,
       pitch: 60,
       bearing: 0.13,
+      maxBounds: bounds,
     });
 
     this.map.addControl(new mapboxgl.NavigationControl(), 'top-right');

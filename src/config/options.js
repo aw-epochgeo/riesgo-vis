@@ -213,7 +213,7 @@ const chapters = {
     position: {
       pitch: 60,
       bearing: 0,
-      zoom: 9,
+      zoom: 8,
       center,
       duration: 800,
     },
