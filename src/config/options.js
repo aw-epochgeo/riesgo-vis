@@ -23,6 +23,10 @@ const chapters = {
       {
         id: 'hexagon-layer',
         opacity: 1,
+      },
+      {
+        id: 'mask-layer',
+        opacity: 0,
       }
     ],
     layout: [
@@ -72,6 +76,10 @@ const chapters = {
       {
         id: 'hexagon-layer',
         opacity: 0,
+      },
+      {
+        id: 'mask-layer',
+        opacity: 1,
       }
     ],
     layout: [
@@ -121,6 +129,10 @@ const chapters = {
       {
         id: 'hexagon-layer',
         opacity: 0,
+      },
+      {
+        id: 'mask-layer',
+        opacity: 1,
       }
     ],
     layout: [
@@ -170,6 +182,10 @@ const chapters = {
       {
         id: 'hexagon-layer',
         opacity: 0,
+      },
+      {
+        id: 'mask-layer',
+        opacity: 1,
       }
     ],
     layout: [
